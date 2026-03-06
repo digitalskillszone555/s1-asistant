@@ -1,0 +1,7 @@
+STUDIO_API_URL = "https://api.digitalskillszone.com"
+
+ASSISTANT_ID = "S1_ASSISTANT_GLOBAL"
+
+ASSISTANT_VERSION = "1.0"
+
+STUDIO_AUTH_TOKEN = ""

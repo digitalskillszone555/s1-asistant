@@ -1,1 +1,6 @@
-{}
+{
+    "language": "bn",
+    "ai_mode": "smart",
+    "voice_enabled": true,
+    "api_key": ""
+}

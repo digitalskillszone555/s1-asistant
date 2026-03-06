@@ -1,0 +1,184 @@
+[2026-03-06 23:04:04] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:04:04] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:04:04] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:04:05] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:04:05] [MEMORY_MANAGER] Memory encryption is ENABLED.
+[2026-03-06 23:04:05] [MEMORY_MANAGER] Quota management is active.
+[2026-03-06 23:04:05] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:04:05] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:04:05] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:04:05] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:04:06] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:04:06] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:04:06] [USER_MANAGER] users.json loaded successfully as plaintext. Migrating to encrypted format.
+[2026-03-06 23:04:06] [USER_MANAGER] Assigned default role 'user' to user 'default'.
+[2026-03-06 23:04:06] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:04:06] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:04:06] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:04:06] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:04:06] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:04:06] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:04:06] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:04:07] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:04:07] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:04:07] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:04:07] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:04:07] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:04:07] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:04:07] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:04:07] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:04:07] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:04:07] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:10:37] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:10:37] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:10:37] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:10:37] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:10:38] [MEMORY_MANAGER] Memory encryption is ENABLED.
+[2026-03-06 23:10:38] [MEMORY_MANAGER] Quota management is active.
+[2026-03-06 23:10:38] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:10:38] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:10:38] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:10:38] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:10:38] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:10:38] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:10:38] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:10:38] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:10:38] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:10:39] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:10:39] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:10:39] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:10:39] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:10:39] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:10:39] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:10:39] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:10:39] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:10:39] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:10:39] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:10:39] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:10:39] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:10:39] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:10:40] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:10:40] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:10:40] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:10:40] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:10:40] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:10:40] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:21:03] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:21:03] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:21:03] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:21:03] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:21:04] [MEMORY_MANAGER] Memory encryption is ENABLED.
+[2026-03-06 23:21:04] [MEMORY_MANAGER] Quota management is active.
+[2026-03-06 23:21:04] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:21:04] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:21:04] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:21:04] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:21:05] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:21:05] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:21:05] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:21:05] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:21:05] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:21:05] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:21:05] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:21:05] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:21:05] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:21:05] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:21:05] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:21:05] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:21:05] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:21:05] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:21:06] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:21:06] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:21:06] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:21:06] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:21:06] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:21:06] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:21:06] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:21:06] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:21:06] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:21:06] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:26:09] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:26:09] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:26:09] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:26:09] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:26:09] [MEMORY_MANAGER] Memory encryption is ENABLED.
+[2026-03-06 23:26:09] [MEMORY_MANAGER] Quota management is active.
+[2026-03-06 23:26:10] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:26:10] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:26:10] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:26:10] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:26:10] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:26:10] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:26:10] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:26:10] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:26:10] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:26:10] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:26:10] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:26:10] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:26:10] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:26:10] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:26:10] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:26:10] [ENCRYPTION] Master encryption secret not found. Generating a new one.
+[2026-03-06 23:26:10] [ENCRYPTION] Encryption salt not found. Generating a new one.
+[2026-03-06 23:26:10] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:26:11] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:26:11] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:26:11] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:26:11] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:26:11] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:26:11] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:26:11] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:26:11] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:26:11] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:26:11] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:26:11] [ENCRYPTION] DECRYPTION FAILED: Invalid token or key.
+[2026-03-06 23:39:22] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:39:22] [ENCRYPTION] Generating new encryption secret
+[2026-03-06 23:39:22] [ENCRYPTION] Generating new encryption salt
+[2026-03-06 23:39:22] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:39:23] [MEMORY_MANAGER] Memory encryption enabled
+[2026-03-06 23:39:23] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:39:23] [ENCRYPTION] Generating new encryption secret
+[2026-03-06 23:39:23] [ENCRYPTION] Generating new encryption salt
+[2026-03-06 23:39:23] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:39:23] [ENCRYPTION] Invalid encryption token
+[2026-03-06 23:39:23] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:39:23] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:39:23] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:39:23] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:39:24] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:39:24] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:39:24] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:39:24] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:39:24] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:39:24] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:39:24] [ENCRYPTION] Generating new encryption secret
+[2026-03-06 23:39:24] [ENCRYPTION] Generating new encryption salt
+[2026-03-06 23:39:24] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:39:24] [ENCRYPTION] Invalid encryption token
+[2026-03-06 23:39:24] [USER_MANAGER] Decryption failed or not available for users.json. Attempting as plaintext (migration).
+[2026-03-06 23:39:24] [CRITICAL] users.json is neither valid encrypted data nor valid plaintext JSON: Expecting value: line 1 column 1 (char 0).
+[2026-03-06 23:39:24] [USER_MANAGER] users.json encryption is ENABLED.
+[2026-03-06 23:39:24] [USER_MANAGER] No users found. Creating 'default' user.
+[2026-03-06 23:39:24] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:39:25] [USER_MANAGER] Created user 'default' with plan 'free' and role 'user'.
+[2026-03-06 23:39:25] [USER_MANAGER] users.json saved successfully (encrypted).
+[2026-03-06 23:39:25] [USER_MANAGER] System set active user to 'default'.
+[2026-03-06 23:39:25] [USER_MANAGER] UserManager initialized. Current user: 'default'
+[2026-03-06 23:39:25] [ENCRYPTION] Invalid encryption token
+[2026-03-06 23:39:25] [MIGRATION] Attempting plaintext migration for memory_data\profile.json
+[2026-03-06 23:39:25] [ERROR] Memory file corrupted
+[2026-03-06 23:39:25] [ENCRYPTION] Invalid encryption token
+[2026-03-06 23:39:25] [MIGRATION] Attempting plaintext migration for memory_data\profile.json
+[2026-03-06 23:39:25] [ERROR] Memory file corrupted
+[2026-03-06 23:39:39] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:47:31] [CONFIG_LOADER] user_config.json saved.
+[2026-03-06 23:47:31] [MAIN] Secure config or salt not found. Passphrase not requested. (Level:'WARNING')
+[2026-03-06 23:47:31] [CONFIG_LOADER] user_config.json loaded.
+[2026-03-06 23:47:31] [MAIN] S1 Assistant Starting...
+[2026-03-06 23:47:31] [CORE_LOGIC] S1 Assistant Core Logic Thread Started.
+[2026-03-06 23:47:31] [CORE_LOGIC] Device Type Detected: DESKTOP
+C to exit.
+[2026-03-06 23:47:31] [MAIN] Voice services enabled.
+[2026-03-06 23:49:20] [MAIN] KeyboardInterrupt received in main thread.
+[2026-03-06 23:49:20] [MAIN] Shutdown signal sent to background threads.

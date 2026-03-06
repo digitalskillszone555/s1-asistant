@@ -5,7 +5,7 @@ import subprocess
 import time
 from skills.base_skill import BaseSkill
 from skills.app_resolver import get_app_resolver
-from skills.router import route_skill # To delegate web actions
+# from skills.router import route_skill # To delegate web actions
 
 class AppControlSkill(BaseSkill):
     """

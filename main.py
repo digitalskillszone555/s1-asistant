@@ -9,6 +9,7 @@ from system.automation_manager import initialize_automation_manager, get_automat
 from system.mode_manager import get_mode_manager
 from system.actions import perform_action
 from interface_layer.device_detector import detect_device_type
+from remote.studio_connector import register_assistant
 
 # --- New Imports for Setup & Config ---
 from system.setup_manager import perform_setup_if_needed
@@ -76,7 +77,7 @@ def run_core_logic(config: dict, shutdown_event: threading.Event):
 
     checker_thread = threading.Thread(target=background_checker_thread, args=(shutdown_event,), daemon=True)
     checker_thread.start()
-    
+    register_assistant()
     if automation_manager:
         automation_manager.run_workflow("on_startup")
 
