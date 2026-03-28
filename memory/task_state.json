@@ -1,0 +1,30 @@
+{
+    "id": "20260326_221439",
+    "state": "COMPLETED",
+    "steps": [
+        {
+            "intent": "search_web",
+            "entity": "cats",
+            "raw_text": "search cats"
+        },
+        {
+            "intent": "open_app",
+            "entity": "notepad",
+            "raw_text": "open notepad"
+        }
+    ],
+    "completed_steps": [
+        {
+            "index": 0,
+            "result": "Searching Google for 'cats'...",
+            "timestamp": "2026-03-26 22:14:40.155541"
+        },
+        {
+            "index": 1,
+            "result": "Opening notepad...",
+            "timestamp": "2026-03-26 22:14:40.214123"
+        }
+    ],
+    "failed_steps": [],
+    "start_time": "2026-03-26 22:14:39.610754"
+}

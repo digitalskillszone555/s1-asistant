@@ -1,8 +1,8 @@
 # ui/ui_launcher.py
-import threading
+# S1 Assistant - UI Launcher
+# Focus: Routing to the premium desktop interface or system tray.
+
 from interface_layer.device_detector import detect_device_type
-from ui.mobile.mobile_app import launch_mobile_ui # New import
-from ui.web.web_app import launch_web_ui       # New import
 
 def get_platform():
     """Detects the current platform (e.g., 'desktop')."""
@@ -10,55 +10,42 @@ def get_platform():
 
 def launch_desktop_ui():
     """
-    Launches the main desktop window.
-    This function was moved from main.py during refactoring.
+    Launches the premium desktop window.
     """
     try:
-        from ui.desktop_app import S1DesktopApp
-        print("[UI Launcher] Launching Desktop UI...")
-        app = S1DesktopApp()
-        app.mainloop() # This is a blocking call
+        from ui.premium_app import PremiumS1App
+        print("[UI Launcher] Launching S1 Premium Interface...")
+        app = PremiumS1App()
+        app.mainloop()
     except ImportError as e:
-        print(f"[UI Launcher ERROR] UI launch failed. Is 'customtkinter' installed? Error: {e}")
+        print(f"[UI Launcher ERROR] CustomTkinter not found. Please install it to use the premium UI.")
     except Exception as e:
-        print(f"[UI Launcher ERROR] An unexpected error occurred: {e}")
+        print(f"[UI Launcher ERROR] Failed to launch UI: {e}")
 
-def launch_tray_mode(ui_launcher_func):
+def launch_tray_mode():
     """
-    Launches the system tray icon in a separate thread.
-    This function was moved from main.py during refactoring.
+    Launches the system tray icon.
     """
     try:
         from ui.tray_manager import TrayManager
-        print("[UI Launcher] Initiating System Tray icon...")
-        tray_manager = TrayManager(ui_launcher=ui_launcher_func)
+        print("[UI Launcher] Initiating System Tray mode...")
+        # Tray icon can launch the premium UI
+        tray_manager = TrayManager(ui_launcher=launch_desktop_ui)
         tray_manager.run_in_thread()
     except Exception as e:
         print(f"[UI Launcher TRAY ERROR] {e}")
 
 def launch_interface(ui_type: str):
     """
-    Acts as a UI router, launching the appropriate interface based on the
-    startup arguments and platform detection.
-    
-    :param ui_type: The type of UI to launch ('desktop', 'tray', or 'auto').
+    Acts as a UI router.
     """
     platform = get_platform()
-    print(f"[UI Launcher] Detected platform: {platform}. Requested UI: {ui_type}")
+    print(f"[UI Launcher] Platform: {platform} | Requested: {ui_type}")
 
     if platform == "desktop":
-        if ui_type == 'desktop':
+        if ui_type in ['desktop', 'premium']:
             launch_desktop_ui()
         elif ui_type == 'tray':
-            launch_tray_mode(ui_launcher_func=launch_desktop_ui)
-    
-    elif platform == "mobile":
-        # Launch placeholder mobile UI
-        launch_mobile_ui()
-
-    elif platform == "web":
-        # Launch placeholder web UI
-        launch_web_ui()
-        
+            launch_tray_mode()
     else:
-        print(f"[UI Launcher] No UI implementation available for platform: {platform}")
+        print(f"[UI Launcher] UI not yet implemented for platform: {platform}")

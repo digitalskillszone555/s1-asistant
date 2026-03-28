@@ -40,6 +40,7 @@
     "wifi_off": ["turn off wifi", "disable wifi"],
 
     "open_file": ["open file"],
+    "write_file": ["write", "save", "add text to"],
     "delete_file": ["delete file", "remove file"],
     "rename_file": ["rename file"],
     "create_file": ["create file", "make a new file"],

@@ -6,7 +6,7 @@ import traceback
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(PROJECT_ROOT)
 
-from core.brain import think
+from core.master_brain_v7 import process_command_master_v7
 
 TEST_COMMANDS = [
     # Calculator
@@ -61,7 +61,8 @@ for i, cmd in enumerate(TEST_COMMANDS, start=1):
     try:
         print(f"[{i}] TEST INPUT: {cmd}")
 
-        reply, should_exit = think(cmd)
+        reply = process_command_master_v7(cmd)
+        should_exit = False # Unified brain doesn't explicitly return exit flag
 
         print(f"[REPLY]: {reply}")
         print(f"[EXIT FLAG]: {should_exit}")

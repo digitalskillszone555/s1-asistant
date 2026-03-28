@@ -1,6 +1,6 @@
 # interface_layer/ui_controller.py
 
-from core.brain import think
+from core.master_brain_v7 import process_command_master_v7
 from user.user_manager import get_user_manager
 from system.mode_manager import get_mode_manager
 from language.language_manager import get_language_manager
@@ -26,8 +26,12 @@ class UIController:
         if not text:
             return None
         
-        # The 'think' function contains the entire logic pipeline
-        reply, exit_flag = think(text)
+        # The MasterBrainV7 unified logic pipeline
+        reply = process_command_master_v7(text)
+        
+        # Determine exit flag if any (e.g. from specific intents, though v7 doesn't return it now,
+        # we can add logic if needed. For now, assume False)
+        exit_flag = False 
         
         self.last_reply = reply
         return reply, exit_flag

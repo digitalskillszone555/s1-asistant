@@ -4,7 +4,7 @@ import os
 import time
 import ollama
 import google.generativeai as genai
-from core.config import OFFLINE_AI_CONFIG, ONLINE_AI_CONFIG
+from config.ai_config import OFFLINE_AI_CONFIG, ONLINE_AI_CONFIG
 
 class AIEngine:
     def __init__(self):
@@ -58,7 +58,8 @@ class AIEngine:
         try:
             genai.configure(api_key=api_key)
             model = genai.GenerativeModel(self.online_model_name)
-            response = model.generate_content(prompt)
+            # Add 10s timeout
+            response = model.generate_content(prompt, request_options={"timeout": 10})
             
             self._increment_rate_limit_count(username)
             print(f"[AI Engine] Online response generated for '{username}'. Daily count: {self.user_api_calls[username]['count']}")
@@ -68,18 +69,19 @@ class AIEngine:
             return None
 
     def generate_offline_response(self, prompt: str):
-        """Generates a response from the local Ollama model."""
+        """Generates a response from the local Ollama model with basic safety."""
         try:
+            # We assume Ollama is running and responsive. 
+            # Real timeouts would require a wrapper thread.
             response = ollama.chat(
                 model=self.offline_model_name,
                 messages=[{'role': 'user', 'content': prompt}],
                 stream=False
             )
-            print("[AI Engine] Offline response generated.")
             return response['message']['content']
         except Exception as e:
             print(f"[AI Engine ERROR] Offline generation failed: {e}")
-            return None
+            return "I'm sorry, my local AI service is currently unavailable."
 
 # Global instance
 S1_AI_ENGINE = AIEngine()

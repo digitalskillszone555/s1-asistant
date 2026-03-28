@@ -2,5 +2,6 @@
     "language": "bn",
     "ai_mode": "smart",
     "voice_enabled": true,
+    "autonomy_enabled": true,
     "api_key": ""
 }

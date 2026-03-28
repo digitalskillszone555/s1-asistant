@@ -1,0 +1,26 @@
+{
+    "open_app": {
+        "approved": 7,
+        "denied": 0
+    },
+    "create_file": {
+        "approved": 10,
+        "denied": 2
+    },
+    "search_web": {
+        "approved": 9,
+        "denied": 0
+    },
+    "delete_file": {
+        "approved": 1,
+        "denied": 1
+    },
+    "search_youtube": {
+        "approved": 1,
+        "denied": 0
+    },
+    "write_file": {
+        "approved": 5,
+        "denied": 0
+    }
+}

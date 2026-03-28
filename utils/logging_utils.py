@@ -4,18 +4,11 @@ from datetime import datetime
 from typing import Any, Dict
 
 LOG_DIRECTORY = "logs"
-LOG_FILE_NAME = "security.log"
-FULL_LOG_PATH = os.path.join(LOG_DIRECTORY, LOG_FILE_NAME)
+DEFAULT_LOG_FILE = "assistant.log"
 
-def log_event(log_type: str, message: str, **kwargs: Any):
+def log_event(log_type: str, message: str, level: str = "INFO", log_file: str = DEFAULT_LOG_FILE, **kwargs: Any):
     """
     Centralized logging utility for the S1 Assistant.
-    Logs events to a specified file with a structured format.
-
-    :param log_type: A string categorizing the event (e.g., "SECURITY", "USER_MANAGER", "ENCRYPTION").
-    :param message: The main message describing the event.
-    :param kwargs: Optional additional context to include in the log entry.
-                   Examples: user, intent, entity, role, score, file_path.
     """
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
@@ -28,11 +21,12 @@ def log_event(log_type: str, message: str, **kwargs: Any):
     if context_string:
         context_string = f" ({context_string})"
 
-    log_entry = f"[{timestamp}] [{log_type}] {message}{context_string}\n"
+    log_entry = f"[{timestamp}] [{level}] [{log_type}] {message}{context_string}\n"
     
     os.makedirs(LOG_DIRECTORY, exist_ok=True)
+    full_path = os.path.join(LOG_DIRECTORY, log_file)
     try:
-        with open(FULL_LOG_PATH, "a", encoding="utf-8") as f:
+        with open(full_path, "a", encoding="utf-8") as f:
             f.write(log_entry)
     except IOError as e:
-        print(f"[ERROR] Failed to write to log file {FULL_LOG_PATH}: {e}")
+        print(f"[ERROR] Failed to write to log file {full_path}: {e}")
