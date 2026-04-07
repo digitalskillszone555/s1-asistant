@@ -105,22 +105,30 @@ class UserManager:
             log_event("USER_MANAGER", f"IOError saving users.json: {e}")
 
     def _set_active_user(self, username: str):
+        """
+        Internal-only method to set the active user without security checks.
+        Used for system startup and safe fallbacks.
+        """
         self.current_user = username
         self.users_data["last_active_user"] = username
         self._save_users_data()
         log_event("USER_MANAGER", f"System set active user to '{username}'.")
 
     def create_user(self, username: str, plan="free", is_initial_setup=False):
+        """
+        Creates a new user with the default 'user' role.
+        Requires the current user to be an ADMIN, unless it's the initial setup.
+        """
         if not is_initial_setup:
             current_user_info = self.get_current_user_info()
             if not current_user_info or current_user_info.get("role") != ADMIN_ROLE:
-                log_event("SECURITY", f"USER_CREATION DENIED", 
-                          username=self.current_user, role=current_user_info.get('role'), new_user=username, reason="ADMIN role required.")
+                log_event("SECURITY", f"USER_CREATION DENIED: User '{self.current_user}' (Role: {current_user_info.get('role')}) attempted to create new user '{username}'. ADMIN role required.", level="WARNING", log_file="security.log")
                 return False, "Permission denied. Administrator role required to create users."
         
         if username in self.users_data["users"]:
             return False, f"User '{username}' already exists."
         
+        # New users are always created with the default USER_ROLE for security.
         self.users_data["users"][username] = {"plan": plan, "role": USER_ROLE}
         self._save_users_data()
         
@@ -132,27 +140,34 @@ class UserManager:
         return True, f"User '{username}' created successfully."
 
     def switch_user(self, username: str):
+        """
+        Switches the active user. Only allows switching to a different user
+        if the current user has the ADMIN role.
+        """
         if username not in self.users_data["users"]:
             return False, f"User '{username}' not found."
             
         current_user_info = self.get_current_user_info()
         
+        # Allow if the user is switching to themselves (no-op)
         if self.current_user == username:
             return True, f"User is already '{username}'."
 
+        # Block if a non-admin tries to switch to someone else
         if not current_user_info or current_user_info.get("role") != ADMIN_ROLE:
-            log_event("SECURITY", f"USER_SWITCH DENIED", 
-                      username=self.current_user, role=current_user_info.get('role'), target_user=username, reason="ADMIN role required.")
+            log_event("SECURITY", f"USER_SWITCH DENIED: User '{self.current_user}' (Role: {current_user_info.get('role')}) attempted to switch to user '{username}'. ADMIN role required.", level="WARNING", log_file="security.log")
             return False, "Permission denied. Administrator role required to switch to another user."
 
         self._set_active_user(username)
         return True, f"Switched to user '{username}'."
 
     def delete_user(self, username: str):
+        """
+        Deletes a user and all their data. Requires ADMIN role.
+        """
         current_user_info = self.get_current_user_info()
         if not current_user_info or current_user_info.get("role") != ADMIN_ROLE:
-            log_event("SECURITY", f"USER_DELETION DENIED", 
-                      username=self.current_user, role=current_user_info.get('role'), target_user=username, reason="ADMIN role required.")
+            log_event("SECURITY", f"USER_DELETION DENIED: User '{self.current_user}' (Role: {current_user_info.get('role')}) attempted to delete user '{username}'. ADMIN role required.", level="WARNING", log_file="security.log")
             return False, "Permission denied. Administrator role required to delete users."
 
         if username not in self.users_data["users"]:
@@ -172,116 +187,7 @@ class UserManager:
             shutil.rmtree(user_memory_path)
             
         log_event("USER_MANAGER", f"Deleted user '{username}'.")
-        log_event("SECURITY", f"USER_DELETED: Admin '{self.current_user}' successfully deleted user '{username}'.")
-        return True, f"User '{username}' has been deleted."
-
-    def list_users(self):
-        return list(self.users_data["users"].keys())
-
-    def get_current_user_info(self):
-        if self.current_user:
-            user_info = self.users_data["users"].get(self.current_user)
-            if user_info and "role" not in user_info:
-                user_info["role"] = USER_ROLE
-            return user_info
-        return None
-
-    def get_user_memory_path(self, username: str):
-        return os.path.join(self.base_memory_path, username)
-
-    def get_current_user_memory_path(self):
-        return self.get_user_memory_path(self.current_user)
-
-# Global user manager instance
-S1_USER_MANAGER = UserManager()
-
-def get_user_manager():
-    return S1_USER_MANAGER
-
-    def _set_active_user(self, username: str):
-        """
-        Internal-only method to set the active user without security checks.
-        Used for system startup and safe fallbacks.
-        """
-        self.current_user = username
-        self.users_data["last_active_user"] = username
-        self._save_users_data()
-        print(f"[UserM] System set active user to '{username}'.")
-
-    def create_user(self, username: str, plan="free", is_initial_setup=False):
-        """
-        Creates a new user with the default 'user' role.
-        Requires the current user to be an ADMIN, unless it's the initial setup.
-        """
-        if not is_initial_setup:
-            current_user_info = self.get_current_user_info()
-            if not current_user_info or current_user_info.get("role") != ADMIN_ROLE:
-                _log_security_event(f"USER_CREATION DENIED: User '{self.current_user}' (Role: {current_user_info.get('role')}) attempted to create new user '{username}'. ADMIN role required.")
-                return False, "Permission denied. Administrator role required to create users."
-        
-        if username in self.users_data["users"]:
-            return False, f"User '{username}' already exists."
-        
-        # New users are always created with the default USER_ROLE for security.
-        self.users_data["users"][username] = {"plan": plan, "role": USER_ROLE}
-        self._save_users_data()
-        
-        user_memory_path = self.get_user_memory_path(username)
-        if not os.path.exists(user_memory_path):
-            os.makedirs(user_memory_path)
-        
-        print(f"[UserM] Created user '{username}' with plan '{plan}' and role '{USER_ROLE}'.")
-        return True, f"User '{username}' created successfully."
-
-    def switch_user(self, username: str):
-        """
-        Switches the active user. Only allows switching to a different user
-        if the current user has the ADMIN role.
-        """
-        if username not in self.users_data["users"]:
-            return False, f"User '{username}' not found."
-            
-        current_user_info = self.get_current_user_info()
-        
-        # Allow if the user is switching to themselves (no-op)
-        if self.current_user == username:
-            return True, f"User is already '{username}'."
-
-        # Block if a non-admin tries to switch to someone else
-        if not current_user_info or current_user_info.get("role") != ADMIN_ROLE:
-            _log_security_event(f"USER_SWITCH DENIED: User '{self.current_user}' (Role: {current_user_info.get('role')}) attempted to switch to user '{username}'. ADMIN role required.")
-            return False, "Permission denied. Administrator role required to switch to another user."
-
-        self._set_active_user(username)
-        return True, f"Switched to user '{username}'."
-
-    def delete_user(self, username: str):
-        """
-        Deletes a user and all their data. Requires ADMIN role.
-        """
-        current_user_info = self.get_current_user_info()
-        if not current_user_info or current_user_info.get("role") != ADMIN_ROLE:
-            _log_security_event(f"USER_DELETION DENIED: User '{self.current_user}' (Role: {current_user_info.get('role')}) attempted to delete user '{username}'. ADMIN role required.")
-            return False, "Permission denied. Administrator role required to delete users."
-
-        if username not in self.users_data["users"]:
-            return False, f"User '{username}' not found."
-        if username == "default":
-            return False, "Cannot delete the default user."
-        
-        del self.users_data["users"][username]
-        
-        if self.users_data["last_active_user"] == username:
-            self._set_active_user("default")
-        
-        self._save_users_data()
-        
-        user_memory_path = self.get_user_memory_path(username)
-        if os.path.exists(user_memory_path):
-            shutil.rmtree(user_memory_path)
-            
-        print(f"[UserM] Deleted user '{username}'.")
-        _log_security_event(f"USER_DELETED: Admin '{self.current_user}' successfully deleted user '{username}'.")
+        log_event("SECURITY", f"USER_DELETED: Admin '{self.current_user}' successfully deleted user '{username}'.", level="INFO", log_file="security.log")
         return True, f"User '{username}' has been deleted."
 
     def list_users(self):
@@ -293,7 +199,7 @@ def get_user_manager():
         if self.current_user:
             user_info = self.users_data["users"].get(self.current_user)
             if user_info and "role" not in user_info:
-                user_info["role"] = "user" # Ensure role is always present
+                user_info["role"] = USER_ROLE # Ensure role is always present
             return user_info
         return None
 
@@ -310,3 +216,4 @@ S1_USER_MANAGER = UserManager()
 
 def get_user_manager():
     return S1_USER_MANAGER
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S1 AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a111f",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#05070a",
+                        "accent-cyan": "#22d3ee",
+                        "accent-purple": "#a855f7",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .orb-glow {
+            background: radial-gradient(circle at center, rgba(34, 211, 238, 0.4) 0%, rgba(168, 85, 247, 0.3) 40%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen selection:bg-accent-cyan/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-gradient-to-b from-primary via-background-dark to-background-dark">
+<header class="flex items-center justify-between px-6 py-6 md:px-12">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 glass-panel">
+<span class="material-symbols-outlined text-accent-cyan text-xl">blur_on</span>
+</div>
+<h2 class="text-xl font-semibold tracking-tight text-white">S1</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex h-10 w-10 items-center justify-center rounded-full glass-panel text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full glass-panel text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full border border-white/10 bg-cover bg-center" data-alt="User profile avatar with minimalist design" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuApnPJ-ObgYVMBfmReC0H-ADaABK4mGl49phmgTxtwfYSV3VLe0Y8DxJKQd80s5BA2ue2HGUu6ufoApkI048_Q_6FBRKk8iosd3rH4XNp6FsA0jQ1KdOvl9MZuAUX1yZCTi-4Vh_IEocGViQxIxXhGV8vKe-vpOqFutJWJujfdAa0GESyjvHvLhE6eDBPJmig0tPnciu_EqItIkQy93e0fWUVmUCA0KMU3M0JeybffJSNCe0G4XiEtjUaWvlnsWg9Y9BbEmcT3Ofsf4')"></div>
+</div>
+</header>
+<main class="flex flex-1 flex-col items-center justify-center px-6 pb-20">
+<div class="relative mb-12 flex items-center justify-center">
+<div class="orb-glow absolute h-64 w-64 rounded-full blur-3xl opacity-50"></div>
+<div class="relative flex h-40 w-40 items-center justify-center rounded-full glass-panel border-white/20 shadow-2xl">
+<div class="h-24 w-24 rounded-full bg-gradient-to-br from-accent-cyan/40 to-accent-purple/40 blur-md"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-white opacity-80">waves</span>
+</div>
+</div>
+</div>
+<div class="max-w-2xl text-center space-y-6">
+<h1 class="text-4xl md:text-5xl font-light tracking-tight text-white">
+                    How can I help you today?
+                </h1>
+<p class="text-slate-400 text-lg font-light max-w-md mx-auto">
+                    Your personal assistant for creative tasks, coding, and daily planning.
+                </p>
+</div>
+<div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-4xl">
+<div class="glass-panel group cursor-pointer rounded-xl p-4 transition-all hover:bg-white/10 hover:border-white/20">
+<div class="mb-3 text-accent-cyan">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h3 class="text-sm font-medium text-white">Creative Writing</h3>
+<p class="text-xs text-slate-500 mt-1">Compose a story or poem</p>
+</div>
+<div class="glass-panel group cursor-pointer rounded-xl p-4 transition-all hover:bg-white/10 hover:border-white/20">
+<div class="mb-3 text-accent-purple">
+<span class="material-symbols-outlined">code</span>
+</div>
+<h3 class="text-sm font-medium text-white">Debug Code</h3>
+<p class="text-xs text-slate-500 mt-1">Solve technical challenges</p>
+</div>
+<div class="glass-panel group cursor-pointer rounded-xl p-4 transition-all hover:bg-white/10 hover:border-white/20">
+<div class="mb-3 text-emerald-400">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<h3 class="text-sm font-medium text-white">Plan Schedule</h3>
+<p class="text-xs text-slate-500 mt-1">Organize your upcoming day</p>
+</div>
+<div class="glass-panel group cursor-pointer rounded-xl p-4 transition-all hover:bg-white/10 hover:border-white/20">
+<div class="mb-3 text-amber-400">
+<span class="material-symbols-outlined">summarize</span>
+</div>
+<h3 class="text-sm font-medium text-white">Summarize</h3>
+<p class="text-xs text-slate-500 mt-1">Key points from long texts</p>
+</div>
+</div>
+<div class="fixed bottom-10 left-0 right-0 px-6">
+<div class="mx-auto max-w-3xl">
+<div class="glass-panel flex items-center rounded-2xl p-2 pr-4 shadow-2xl ring-1 ring-white/10">
+<div class="flex h-12 w-12 items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">attach_file</span>
+</div>
+<input class="flex-1 border-none bg-transparent text-white placeholder-slate-500 focus:ring-0 text-lg py-4 px-2" placeholder="Ask S1 anything..." type="text"/>
+<button class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined font-bold">arrow_upward</span>
+</button>
+</div>
+<div class="mt-4 flex justify-center gap-6">
+<span class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">mic</span>
+                            Voice Mode
+                        </span>
+<span class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">image</span>
+                            Analyze Image
+                        </span>
+<span class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-[14px]">language</span>
+                            Search Web
+                        </span>
+</div>
+</div>
+</div>
+</main>
+<div class="absolute top-1/4 -left-20 h-96 w-96 rounded-full bg-accent-cyan/5 blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-20 h-96 w-96 rounded-full bg-accent-purple/5 blur-[120px] pointer-events-none"></div>
+</div>
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S1 AI - Password Reset</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#581c87",
+              "surface": "#0a0c10",
+              "surface-bright": "#1e293b",
+              "on-primary": "#000000",
+              "primary-container": "#0a111f",
+              "primary-fixed": "#bae6fd",
+              "inverse-surface": "#f1f5f9",
+              "on-secondary-container": "#d8b4fe",
+              "primary": "#38bdf8",
+              "tertiary": "#f59e0b",
+              "on-primary-container": "#38bdf8",
+              "tertiary-container": "#451a03",
+              "on-tertiary": "#ffffff",
+              "on-background": "#f1f5f9",
+              "surface-container-low": "#0f172a",
+              "surface-container-highest": "#334155",
+              "on-error-container": "#fca5a5",
+              "outline": "#475569",
+              "tertiary-fixed": "#fef3c7",
+              "secondary-fixed": "#f3e8ff",
+              "surface-container": "#0f172a",
+              "on-surface-variant": "#94a3b8",
+              "surface-tint": "#38bdf8",
+              "on-secondary": "#ffffff",
+              "secondary": "#a855f7",
+              "on-tertiary-fixed": "#78350f",
+              "on-tertiary-container": "#fbbf24",
+              "primary-fixed-dim": "#7dd3fc",
+              "background": "#0a0c10",
+              "surface-variant": "#0f172a",
+              "error": "#ef4444",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#0a0c10",
+              "on-tertiary-fixed-variant": "#b45309",
+              "on-surface": "#f1f5f9",
+              "outline-variant": "#1e293b",
+              "secondary-container": "#3b0764",
+              "surface-dim": "#0a0c10",
+              "on-primary-fixed-variant": "#0369a1",
+              "on-secondary-fixed-variant": "#7e22ce",
+              "inverse-primary": "#0369a1",
+              "error-container": "#7f1d1d",
+              "on-primary-fixed": "#0c4a6e",
+              "secondary-fixed-dim": "#e9d5ff",
+              "tertiary-fixed-dim": "#fde68a",
+              "surface-container-high": "#1e293b",
+              "surface-container-lowest": "#050608"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        background-color: #0a0c10;
+        color: #f1f5f9;
+        font-family: 'Inter', sans-serif;
+      }
+      .glass-card {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+      .text-glow {
+        text-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-primary/30">
+<!-- Background Decoration Elements -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute bottom-[-5%] right-[-5%] w-[30%] h-[30%] rounded-full bg-secondary/5 blur-[100px]"></div>
+</div>
+<!-- Main Content Container -->
+<main class="flex-grow flex items-center justify-center p-6 sm:p-12">
+<div class="w-full max-w-md space-y-8">
+<!-- Branding Anchor -->
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 uppercase">
+                    S1 AI
+                </h1>
+<p class="text-[10px] uppercase tracking-[0.2em] font-medium text-on-surface-variant/60">
+                    Intelligence Protocol
+                </p>
+</div>
+<!-- Focused Transactional Card: Reset Request -->
+<div class="glass-card rounded-2xl p-8 space-y-6">
+<div class="space-y-2">
+<h2 class="text-xl font-bold tracking-tight text-on-surface">Password Reset</h2>
+<p class="text-sm text-on-surface-variant font-medium leading-relaxed">
+                        Enter your email to receive a secure reset link.
+                    </p>
+</div>
+<form class="space-y-6">
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 ml-1" for="email">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="w-full bg-slate-800/50 border border-white/5 rounded-xl py-3.5 pl-11 pr-4 text-on-surface placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-primary/50 focus:border-primary/30 transition-all duration-300 text-sm" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+</div>
+<button class="w-full group relative overflow-hidden bg-primary-container border border-primary/20 hover:border-primary/40 text-primary py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)] active:scale-[0.98]" type="submit">
+<span class="relative z-10">Send Link</span>
+<div class="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</button>
+</form>
+<div class="flex items-center justify-center pt-2">
+<a class="text-xs font-medium text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                        Back to Login
+                    </a>
+</div>
+</div>
+<!-- Success State Preview (Hidden by default, shown for UI demonstration) -->
+<div class="glass-card rounded-2xl p-8 space-y-6 relative overflow-hidden border-primary/20 bg-primary/5">
+<!-- Abstract Grain Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0sq5fl9Q0jawDx8wyyYCoyfqUyp_QPWjrZuN_BZ3xO4inILVNFYhUkl57WkohDMMw0LoFpg2lFynfy1MMTH3bATVFKohH6ghi5mEC54WUXfwORpQyekkhnSMMnTrLzl3SosBT9AcskFlyKqzTBzrPR-V6mckBNdep7iZ-L7-Aoe3Ovx-pus5pf4JUKTEojs26duveK2J_0PqeCUZYYqc-qdcmj3S1WFJgrHISJcy0GULu1DXJsta7IfY0autxbOrBBBgOaHwb333V');"></div>
+<div class="relative flex flex-col items-center text-center space-y-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 shadow-[0_0_20px_rgba(56,189,248,0.1)]">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">mark_email_unread</span>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-bold tracking-tight text-on-surface">Check your email</h2>
+<p class="text-sm text-on-surface-variant font-medium leading-relaxed max-w-[240px]">
+                            We've sent a secure authentication link to your inbox.
+                        </p>
+</div>
+<div class="pt-2">
+<p class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500">
+                            Didn't receive it? <span class="text-primary cursor-pointer hover:underline">Resend now</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Logic from Shared Components -->
+<footer class="w-full py-6 px-12 flex flex-col md:flex-row justify-between items-center border-t border-white/5 bg-[#0a0c10]">
+<div class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 mb-4 md:mb-0">
+            © 2024 S1 AI Intelligence. System Status: Operational
+        </div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Security</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">API Documentation</a>
+</nav>
+</footer>
+<!-- Visual Anchor: Contextual Imagery -->
+<div class="hidden lg:block fixed right-12 top-1/2 -translate-y-1/2 w-[300px] opacity-20 hover:opacity-40 transition-opacity duration-700 pointer-events-none">
+<img alt="abstract visualization" class="rounded-3xl border border-white/10 shadow-2xl" data-alt="Futuristic glowing blue geometric neural network connection points in dark space with lens flare and glass refraction effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkzrTaeYVRxSeGinmOGRgVPpnypdXep7fdegxYTtVU2bhif5xRXXkmdmzpdeJqjBCCCN75ma-OTMhupAkiITyZKlkF6wo7hzLznqHduJFy7hrc1DFNpNCfCcGNWUQpwM1fM4M0I1K_dnyWiz7yIC6sP7rVjFJbDjx3krRTxFxoizjlDIFUbswKEBOjy7dP4_g_khqDn0ziT8ugei-Rp4rzPmyO8JtnKW7cwJ416KItX3BggQYhuVl_0TLC49fktVgBhPYd_YF63ssv"/>
+</div>
+</body></html>

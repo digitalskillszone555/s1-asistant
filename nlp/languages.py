@@ -1,6 +1,6 @@
 # nlp/languages.py
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any, Type
+from typing import Dict, List, Any, Type, Tuple, Set, Optional
 
 class BaseLanguagePack(ABC):
     """

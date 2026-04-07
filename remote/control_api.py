@@ -10,6 +10,8 @@ from security.permissions import ADMIN_ROLE
 from main import shutdown_event
 from utils.logging_utils import log_event # Centralized logging
 
+LOG_FILE = os.path.join("logs", "security.log")
+
 class ControlAPIHandler(http.server.BaseHTTPRequestHandler):
     """
     Handles incoming HTTP requests for the S1 remote control system.
@@ -27,13 +29,13 @@ class ControlAPIHandler(http.server.BaseHTTPRequestHandler):
         """Checks for a valid Bearer token in the Authorization header."""
         auth_header = self.headers.get("Authorization")
         if not auth_header or not auth_header.startswith("Bearer "):
-            log_event("REMOTE_API", "AUTH FAILED: Missing or malformed Authorization header.", client_ip=self.client_address[0])
+            log_event("SECURITY", f"AUTH FAILED: Missing or malformed Authorization header from {self.client_address[0]}.", level="WARNING", log_file="security.log")
             self._send_error(401, "Unauthorized: Missing or malformed 'Authorization: Bearer <token>' header.")
             return False
         
         provided_token = auth_header.split(" ")[1]
         if provided_token != self.auth_token:
-            log_event("REMOTE_API", "AUTH FAILED: Invalid token received.", client_ip=self.client_address[0])
+            log_event("SECURITY", f"AUTH FAILED: Invalid token received from {self.client_address[0]}.", level="WARNING", log_file="security.log")
             self._send_error(401, "Unauthorized: Invalid token.")
             return False
             
@@ -46,50 +48,12 @@ class ControlAPIHandler(http.server.BaseHTTPRequestHandler):
             return True
         
         user_role = user_info.get("role", "N/A") if user_info else "N/A"
-        log_event("SECURITY", "ACCESS DENIED: Non-admin user attempted to access admin-only endpoint.", 
-                  username=get_user_manager().current_user, role=user_role, client_ip=self.client_address[0], endpoint=self.path)
-        self._send_error(403, "Forbidden: Administrator access required.")
-        return False
-    """
-    Handles incoming HTTP requests for the S1 remote control system.
-    Includes token authentication and role-based authorization.
-    """
-    auth_token: str = "" # This will be set by the factory in the server
-
-    def _send_error(self, code: int, message: str):
-        self.send_response(code)
-        self.send_header("Content-type", "application/json")
-        self.end_headers()
-        self.wfile.write(json.dumps({"error": message}).encode('utf-8'))
-
-    def _handle_auth(self) -> bool:
-        """Checks for a valid Bearer token in the Authorization header."""
-        auth_header = self.headers.get("Authorization")
-        if not auth_header or not auth_header.startswith("Bearer "):
-            _log_security_event(f"AUTH FAILED: Missing or malformed Authorization header from {self.client_address[0]}.")
-            self._send_error(401, "Unauthorized: Missing or malformed 'Authorization: Bearer <token>' header.")
-            return False
-        
-        provided_token = auth_header.split(" ")[1]
-        if provided_token != self.auth_token:
-            _log_security_event(f"AUTH FAILED: Invalid token received from {self.client_address[0]}.")
-            self._send_error(401, "Unauthorized: Invalid token.")
-            return False
-            
-        return True
-
-    def _is_admin(self) -> bool:
-        """Checks if the current S1 user has the ADMIN role."""
-        user_info = get_user_manager().get_current_user_info()
-        if user_info and user_info.get("role") == ADMIN_ROLE:
-            return True
-        
-        user_role = user_info.get("role", "N/A") if user_info else "N/A"
-        _log_security_event(f"ACCESS DENIED: Non-admin user '{get_user_manager().current_user}' (Role: {user_role}) from {self.client_address[0]} attempted to access admin-only endpoint '{self.path}'.")
+        log_event("SECURITY", f"ACCESS DENIED: Non-admin user '{get_user_manager().current_user}' (Role: {user_role}) from {self.client_address[0]} attempted to access admin-only endpoint '{self.path}'.", level="WARNING", log_file="security.log")
         self._send_error(403, "Forbidden: Administrator access required.")
         return False
 
     def do_GET(self):
+
         """Handles GET requests with authentication and authorization."""
         if not self._handle_auth():
             return

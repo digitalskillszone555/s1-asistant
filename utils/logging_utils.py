@@ -2,6 +2,7 @@
 import os
 from datetime import datetime
 from typing import Any, Dict
+from system.config import DEBUG_MODE
 
 LOG_DIRECTORY = "logs"
 DEFAULT_LOG_FILE = "assistant.log"
@@ -23,10 +24,14 @@ def log_event(log_type: str, message: str, level: str = "INFO", log_file: str = 
 
     log_entry = f"[{timestamp}] [{level}] [{log_type}] {message}{context_string}\n"
     
+    if DEBUG_MODE:
+        print(log_entry.strip())
+        
     os.makedirs(LOG_DIRECTORY, exist_ok=True)
     full_path = os.path.join(LOG_DIRECTORY, log_file)
     try:
         with open(full_path, "a", encoding="utf-8") as f:
             f.write(log_entry)
     except IOError as e:
-        print(f"[ERROR] Failed to write to log file {full_path}: {e}")
+        if DEBUG_MODE:
+            print(f"[ERROR] Failed to write to log file {full_path}: {e}")

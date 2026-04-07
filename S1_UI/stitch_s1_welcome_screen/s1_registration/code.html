@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S1 AI - Join the Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#581c87",
+                        "surface": "#0a0c10",
+                        "surface-bright": "#1e293b",
+                        "on-primary": "#000000",
+                        "primary-container": "#0a111f",
+                        "primary-fixed": "#bae6fd",
+                        "inverse-surface": "#f1f5f9",
+                        "on-secondary-container": "#d8b4fe",
+                        "primary": "#38bdf8",
+                        "tertiary": "#f59e0b",
+                        "on-primary-container": "#38bdf8",
+                        "tertiary-container": "#451a03",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#f1f5f9",
+                        "surface-container-low": "#0f172a",
+                        "surface-container-highest": "#334155",
+                        "on-error-container": "#fca5a5",
+                        "outline": "#475569",
+                        "tertiary-fixed": "#fef3c7",
+                        "secondary-fixed": "#f3e8ff",
+                        "surface-container": "#0f172a",
+                        "on-surface-variant": "#94a3b8",
+                        "surface-tint": "#38bdf8",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#a855f7",
+                        "on-tertiary-fixed": "#78350f",
+                        "on-tertiary-container": "#fbbf24",
+                        "primary-fixed-dim": "#7dd3fc",
+                        "background": "#0a0c10",
+                        "surface-variant": "#0f172a",
+                        "error": "#ef4444",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#0a0c10",
+                        "on-tertiary-fixed-variant": "#b45309",
+                        "on-surface": "#f1f5f9",
+                        "outline-variant": "#1e293b",
+                        "secondary-container": "#3b0764",
+                        "surface-dim": "#0a0c10",
+                        "on-primary-fixed-variant": "#0369a1",
+                        "on-secondary-fixed-variant": "#7e22ce",
+                        "inverse-primary": "#0369a1",
+                        "error-container": "#7f1d1d",
+                        "on-primary-fixed": "#0c4a6e",
+                        "secondary-fixed-dim": "#e9d5ff",
+                        "tertiary-fixed-dim": "#fde68a",
+                        "surface-container-high": "#1e293b",
+                        "surface-container-lowest": "#050608"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Suppression: Not rendered for Transactional Registration page per instructions -->
+<main class="flex-grow flex items-center justify-center relative px-6 py-12">
+<!-- Ambient Decorative Glows -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Registration Container -->
+<div class="w-full max-w-xl relative z-10">
+<!-- Floating Branding/Status Elements -->
+<div class="flex justify-between items-end mb-8 px-2">
+<div class="flex flex-col">
+<span class="text-xs font-medium tracking-[0.2em] text-primary uppercase mb-1">Inception Phase</span>
+<h1 class="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 leading-none">
+                        S1 AI
+                    </h1>
+</div>
+<div class="flex gap-3">
+<div class="glass-card px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-emerald-400" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-[10px] uppercase tracking-widest font-bold text-emerald-400/80">Secure</span>
+</div>
+</div>
+</div>
+<!-- Glassmorphic Card -->
+<div class="glass-card rounded-[2rem] p-10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] overflow-hidden relative">
+<!-- Inner card shine -->
+<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+<header class="mb-10">
+<h2 class="text-2xl font-bold tracking-tight text-white mb-2">Create Account</h2>
+<p class="text-on-surface-variant text-sm">Join the next generation of synthetic intelligence workbench.</p>
+</header>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Name Field -->
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 ml-1">Full Name</label>
+<div class="relative group">
+<input class="w-full bg-slate-800/30 border-none rounded-xl py-3.5 px-4 text-on-surface placeholder:text-slate-600 focus:ring-2 focus:ring-primary/40 transition-all" placeholder="John Doe" type="text"/>
+</div>
+</div>
+<!-- Phone Field -->
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 ml-1">Phone Number</label>
+<div class="relative">
+<input class="w-full bg-slate-800/30 border-none rounded-xl py-3.5 px-4 text-on-surface placeholder:text-slate-600 focus:ring-2 focus:ring-primary/40 transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 ml-1">Work Email</label>
+<div class="relative">
+<input class="w-full bg-slate-800/30 border-none rounded-xl py-3.5 px-4 text-on-surface placeholder:text-slate-600 focus:ring-2 focus:ring-primary/40 transition-all" placeholder="name@company.ai" type="email"/>
+</div>
+</div>
+<!-- Country Dropdown -->
+<div class="space-y-1.5">
+<label class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 ml-1">Country / Region</label>
+<div class="relative group">
+<select class="w-full bg-slate-800/30 border-none rounded-xl py-3.5 px-4 text-on-surface appearance-none focus:ring-2 focus:ring-primary/40 transition-all cursor-pointer">
+<option disabled="" selected="" value="">Select location</option>
+<option value="us">United States</option>
+<option value="uk">United Kingdom</option>
+<option value="ca">Canada</option>
+<option value="de">Germany</option>
+<option value="jp">Japan</option>
+</select>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="pt-4">
+<button class="w-full relative group overflow-hidden rounded-xl py-4 flex items-center justify-center gap-2 transition-all active:scale-[0.98]" type="submit">
+<div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary transition-transform duration-500 group-hover:scale-110"></div>
+<span class="relative text-black font-bold tracking-tight text-sm">Create Account</span>
+<span class="material-symbols-outlined relative text-black text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="flex items-center gap-4 py-4">
+<div class="h-px flex-grow bg-white/5"></div>
+<span class="text-[10px] uppercase tracking-[0.1em] text-slate-600">Verification Required</span>
+<div class="h-px flex-grow bg-white/5"></div>
+</div>
+<p class="text-center text-xs text-on-surface-variant">
+                        Already have an account? <a class="text-primary hover:text-primary-fixed-dim transition-colors" href="#">Sign in here</a>
+</p>
+</form>
+<!-- Floating Bottom Badge -->
+<div class="absolute -bottom-6 -right-6 w-24 h-24 bg-secondary/10 rounded-full blur-2xl"></div>
+</div>
+<!-- Footer Text (Subtle) -->
+<div class="mt-8 text-center">
+<div class="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full border-white/5 shadow-none">
+<span class="material-symbols-outlined text-[16px] text-sky-400/60" data-icon="shield">shield</span>
+<span class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500">AES-256 Cloud Encryption Enabled</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Shared Footer Component -->
+<footer class="w-full py-6 px-12 flex justify-between items-center border-t border-white/5 bg-[#0a0c10]">
+<div class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500">
+            © 2024 S1 AI Intelligence. System Status: Operational
+        </div>
+<div class="flex gap-6">
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Security</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">API Documentation</a>
+</div>
+</footer>
+</body></html>

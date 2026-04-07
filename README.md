@@ -1,29 +1,33 @@
 # S1 Assistant - Global Edition
 
-S1 is a powerful, production-ready virtual assistant with a premium human-like interface. It supports voice-first interactions, multi-step tasks, and emotional intelligence.
+S1 is a powerful, production-ready virtual assistant. It supports voice-first interactions, multi-step tasks, and emotional intelligence via terminal or API.
 
 ## Features
-- **Modern Animated UI:** Siri-like orb with emotional reactions.
+- **Terminal Mode:** Clean CLI interface for developer focus.
 - **Voice-First:** Background wake word ("Hey S1") and interruptible speech.
 - **Unified Brain (V7):** Context-aware, proactive, and secure.
 - **Smart Memory:** Learns your name, preferences, and habits.
 - **Secure by Design:** Hardened action guard prevents dangerous commands.
 - **Multi-lingual:** Supports English, Bengali, and Hindi.
+- **API Ready:** Integrate S1 into other applications.
 
 ## How to Run
 1. Install dependencies:
    ```bash
-   pip install customtkinter speechrecognition pyttsx3 google-generativeai requests cryptography
+   pip install speechrecognition pyttsx3 google-generativeai requests cryptography fastapi uvicorn
    ```
-2. Start the assistant:
+2. Start the assistant (Terminal Mode):
    ```bash
-   python main.py --premium
+   python main.py
+   ```
+3. Start the API server:
+   ```bash
+   python main.py --api
    ```
 
 ## Folder Structure
 - `core/`: Central nervous system (Brain, Action Engine).
 - `nlp/`: Language processing and emotion detection.
-- `ui/`: Premium and legacy user interfaces.
 - `voice/`: Wake word and speech modules.
 - `memory/`: Encrypted persistent storage.
 - `security/`: Command filtering and safety.

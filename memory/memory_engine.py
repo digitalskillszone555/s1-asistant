@@ -3,7 +3,10 @@
 # Focus: Identity memory, tagging, and contextual recall.
 
 from memory.memory_manager import get_memory_manager
+from memory.habit_tracker import get_habit_tracker
 import time
+import json
+import os
 
 class MemoryEngine:
     """
@@ -11,7 +14,23 @@ class MemoryEngine:
     """
     def __init__(self):
         self.memory_manager = get_memory_manager()
+        self.habit_tracker = get_habit_tracker()
         self.categories = ["habit", "preference", "info", "identity"]
+        
+        # Caching logic
+        self._cache = {}
+        self._cache_time = 0
+        self._cache_ttl = 30 # 30 seconds
+
+    def _get_cached_data(self, key):
+        if time.time() - self._cache_time > self._cache_ttl:
+            self._cache = {} # Invalidate
+            return None
+        return self._cache.get(key)
+
+    def _set_cached_data(self, key, value):
+        self._cache[key] = value
+        self._cache_time = time.time()
 
     def analyze_and_memorize(self, text: str, intent_data: dict):
         """
@@ -22,7 +41,6 @@ class MemoryEngine:
         # 1. Identity Detection (Name)
         if "my name is " in text_lower or "call me " in text_lower:
             words = text.split()
-            # Simplistic name extraction: word after 'is' or 'me'
             try:
                 name = words[-1].strip("?.!")
                 self.save_identity("user_name", name)
@@ -34,13 +52,81 @@ class MemoryEngine:
             self.save_preference("interest", text)
             print(f"[MemEngine] Passive preference saved.")
 
+    def get_frequent_apps(self):
+        """Returns most used apps based on habit tracker (threshold >= 3)."""
+        cached = self._get_cached_data("frequent_apps")
+        if cached: return cached
+
+        habit_tracker = get_habit_tracker()
+        patterns = habit_tracker.time_patterns
+        
+        apps = {}
+        for key, hours in patterns.items():
+            if key.startswith("open_app:"):
+                app_name = key.split(":", 1)[1]
+                total_uses = sum(hours.values())
+                if total_uses >= 3:
+                    apps[app_name] = total_uses
+        
+        sorted_apps = sorted(apps.items(), key=lambda x: x[1], reverse=True)
+        result = [app for app, count in sorted_apps]
+        self._set_cached_data("frequent_apps", result)
+        return result
+
+    def get_time_based_habits(self):
+        """Detects patterns (morning = chrome, night = youtube) based on threshold >= 3."""
+        cached = self._get_cached_data("time_based_habits")
+        if cached: return cached
+
+        habit_tracker = get_habit_tracker()
+        patterns = habit_tracker.time_patterns
+        
+        habits = []
+        for key, hours in patterns.items():
+            if key.startswith("open_app:"):
+                app_name = key.split(":", 1)[1]
+                for hour_str, count in hours.items():
+                    if count >= 3:
+                        hour = int(hour_str)
+                        time_of_day = self._get_time_of_day(hour)
+                        habits.append(f"{time_of_day} = {app_name}")
+        
+        self._set_cached_data("time_based_habits", habits)
+        return habits
+
+    def _get_time_of_day(self, hour: int) -> str:
+        if 6 <= hour < 12: return "morning"
+        elif 12 <= hour < 17: return "afternoon"
+        elif 17 <= hour < 22: return "evening"
+        else: return "night"
+
+    def get_user_profile_summary(self):
+        """Returns short summary: 'User likes Chrome, works in morning, uses Notion often'."""
+        cached = self._get_cached_data("profile_summary")
+        if cached: return cached
+
+        frequent_apps = self.get_frequent_apps()
+        time_habits = self.get_time_based_habits()
+        
+        profile = self.memory_manager._load_memory("profile") or {}
+        name = profile.get("user_name", {}).get("value", "User")
+
+        parts = [f"User is {name}"]
+        if frequent_apps:
+            parts.append(f"frequently uses {', '.join(frequent_apps[:3])}")
+        if time_habits:
+            parts.append(f"patterns detected: {', '.join(time_habits[:3])}")
+            
+        summary = ". ".join(parts)
+        self._set_cached_data("profile_summary", summary)
+        return summary
+
     def save_identity(self, key: str, value: str):
         """Saves core identity traits (name, role)."""
         self.memory_manager.save_memory("profile", key, value)
 
     def save_preference(self, key: str, value: str):
         """Saves user preferences with auto-tagging."""
-        # We store them in 'facts' with a specific prefix/tag for now
         tag = "PREFERENCE"
         self.memory_manager.save_memory("facts", f"{tag}:{key}", value)
 
@@ -49,7 +135,6 @@ class MemoryEngine:
         if not fact_to_remember:
             return False, "There was nothing to remember."
         
-        # Simple tagging logic
         category = "info"
         if any(w in fact_to_remember.lower() for w in ["like", "prefer", "love", "hate"]):
             category = "preference"
@@ -63,16 +148,13 @@ class MemoryEngine:
     def recall_for_context(self, current_intent: str, entity: str = None) -> str:
         """
         Provides a 'Did you know' or 'Recall' snippet for the brain.
-        Example: If opening an app, check if we know any preference about it.
         """
-        # This is used by MasterBrainV7 to inject personality
         if current_intent == "greeting":
             user_name = self.memory_manager.get_memory("profile", "user_name")
             if user_name:
                 return f"Your name is {user_name}, right? Good to see you again!"
         
         if current_intent == "open_app" and entity:
-            # Check if we have a preference or habit related to this app
             facts = self.memory_manager.list_memory("facts")
             for f in facts:
                 if entity.lower() in f.lower():

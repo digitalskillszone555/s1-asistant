@@ -1,6 +1,6 @@
 # nlp/language_detector.py
 import re
-from typing import Literal, Dict, List, Tuple
+from typing import Literal, Dict, List, Tuple, Any
 from nlp.data import get_nlp_data # Import the NLPData instance to get dynamic STOP_WORDS
 from nlp.languages import get_language_registry # Import language registry
 

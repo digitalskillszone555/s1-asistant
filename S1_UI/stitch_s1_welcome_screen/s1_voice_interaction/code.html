@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0a111f",
+                        "accent-blue": "#3b82f6",
+                        "accent-purple": "#a855f7",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#05070a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ai-orb {
+            background: radial-gradient(circle at center, #3b82f6 0%, #a855f7 40%, transparent 70%);
+            filter: blur(40px);
+            opacity: 0.6;
+        }
+        .orb-core {
+            background: radial-gradient(circle at center, #ffffff 0%, #3b82f6 30%, #a855f7 60%, #05070a 100%);
+            box-shadow: 0 0 80px 20px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-hidden h-screen">
+<div class="relative flex h-full w-full flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between px-8 py-6 z-20">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">blur_on</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">S1 AI</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-full glass-panel hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-400">history</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full glass-panel hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-400">settings</span>
+</button>
+<div class="size-10 rounded-full border-2 border-accent-blue/30 p-0.5">
+<img alt="User profile avatar" class="rounded-full w-full h-full object-cover" data-alt="Modern professional male portrait avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCheX1ltTc0wrgqNeui7hCbPyy80mdhu-0Xjg3qrSqDDtoRM21un6zb1fjco68AEl_TjJV0OJShwGtnZiDc-CPuHgiMiNuQ_jeQFNmPjCX31rJgsJZgjkg1pYwWkYwDcHJTMTZZwINFN0ZLwNkjrJXPrgdh6liPmZdjfTW0DwJcsaseMqtc_fBpArKhrLszWBJLyJRk_lYuMTpOa78Ob0P2M7D1LSSsC-S65kq1ZE32tyPMJXaVSXNrUhWzpDvsIC6eQ00_5jPm4ME"/>
+</div>
+</div>
+</header>
+<!-- Main Interaction Area -->
+<main class="flex-1 flex flex-col items-center justify-center relative overflow-hidden px-6">
+<!-- Background Glows -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] ai-orb z-0"></div>
+<!-- Central Orb -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="size-48 rounded-full orb-core flex items-center justify-center mb-12">
+<div class="size-40 rounded-full border border-white/10 flex items-center justify-center">
+<div class="size-32 rounded-full border border-white/5"></div>
+</div>
+</div>
+<div class="text-center max-w-md">
+<h1 class="text-4xl font-semibold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-slate-100 to-slate-400">
+                        Listening...
+                    </h1>
+<p class="text-slate-400 text-lg leading-relaxed">
+                        "What is the current atmospheric pressure in Tokyo?"
+                    </p>
+</div>
+</div>
+<!-- UI Overlays (Glassmorphic Cards) -->
+<div class="absolute left-10 top-1/4 glass-panel p-4 rounded-xl max-w-[200px] hidden lg:block">
+<span class="material-symbols-outlined text-accent-blue mb-2">auto_awesome</span>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-widest mb-1">Status</p>
+<p class="text-sm font-semibold">Neural Processing Active</p>
+</div>
+<div class="absolute right-10 bottom-1/3 glass-panel p-4 rounded-xl max-w-[220px] hidden lg:block">
+<div class="flex items-center gap-2 mb-2">
+<div class="size-2 rounded-full bg-green-500"></div>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-widest">Connection</p>
+</div>
+<p class="text-sm font-semibold">Ultra-low latency (12ms)</p>
+</div>
+</main>
+<!-- Bottom Controls & Waveform -->
+<footer class="p-10 z-20">
+<div class="max-w-3xl mx-auto flex flex-col items-center gap-10">
+<!-- Animated Waveform Mock -->
+<div class="flex items-end justify-center gap-1.5 h-16 w-full">
+<div class="w-1.5 bg-accent-blue/40 rounded-full h-8"></div>
+<div class="w-1.5 bg-accent-blue/60 rounded-full h-12"></div>
+<div class="w-1.5 bg-accent-blue rounded-full h-16"></div>
+<div class="w-1.5 bg-accent-purple rounded-full h-10"></div>
+<div class="w-1.5 bg-accent-purple/80 rounded-full h-14"></div>
+<div class="w-1.5 bg-white rounded-full h-6"></div>
+<div class="w-1.5 bg-accent-blue rounded-full h-12"></div>
+<div class="w-1.5 bg-accent-blue/80 rounded-full h-16"></div>
+<div class="w-1.5 bg-accent-purple rounded-full h-14"></div>
+<div class="w-1.5 bg-accent-purple/40 rounded-full h-8"></div>
+<div class="w-1.5 bg-accent-blue/30 rounded-full h-6"></div>
+<div class="w-1.5 bg-accent-blue/60 rounded-full h-10"></div>
+</div>
+<!-- Control Buttons -->
+<div class="flex items-center gap-8">
+<button class="size-14 flex items-center justify-center rounded-full glass-panel text-slate-400 hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">keyboard</span>
+</button>
+<button class="size-20 flex items-center justify-center rounded-full bg-red-500/20 border border-red-500/50 text-red-500 hover:bg-red-500 hover:text-white transition-all shadow-lg shadow-red-500/20">
+<span class="material-symbols-outlined text-4xl">close</span>
+</button>
+<button class="size-14 flex items-center justify-center rounded-full glass-panel text-slate-400 hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">volume_up</span>
+</button>
+</div>
+<!-- Prompt Suggestions -->
+<div class="flex flex-wrap justify-center gap-3">
+<button class="px-5 py-2 rounded-full glass-panel text-sm text-slate-300 hover:bg-white/10 transition-colors">
+                        Set a reminder
+                    </button>
+<button class="px-5 py-2 rounded-full glass-panel text-sm text-slate-300 hover:bg-white/10 transition-colors">
+                        Summarize my emails
+                    </button>
+<button class="px-5 py-2 rounded-full glass-panel text-sm text-slate-300 hover:bg-white/10 transition-colors">
+                        Play deep focus music
+                    </button>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

@@ -35,6 +35,7 @@ class ActionEngine:
         extra_data = intent_data.get("extra_data")
 
         log_event("ACTION_ENGINE", f"Executing intent: {intent}", entity=entity)
+        print(f"[ACTION] Processing intent: {intent} on entity: {entity}")
 
         # 1. Security Validation
         is_safe, msg = self.guard.is_action_safe(intent, entity, extra_data)
@@ -99,12 +100,23 @@ class ActionEngine:
     def _handle_open_app(self, entity: str) -> str:
         if not entity: return "What should I open?"
         path = self.resolver.resolve(entity)
-        if not path: return f"I couldn't find {entity} on this system."
+        if not path:
+            print(f"[ACTION] {entity} not found.")
+            return f"I couldn't find {entity} on this system."
         
         try:
-            subprocess.Popen(path, shell=True)
+            print(f"[ACTION] Launching: {entity}")
+            print(f"[EXECUTION REAL] Launching application at: {path}")
+            
+            if sys.platform == "win32":
+                os.startfile(path)
+            else:
+                subprocess.Popen(path, shell=True)
+                
+            print(f"[EXECUTION REAL] App opened: {entity}")
             return f"Opening {entity}..."
         except Exception as e:
+            print(f"[ACTION] Failed to launch {entity}: {e}")
             return f"Failed to launch {entity}: {e}"
 
     def _handle_close_app(self, entity: str) -> str:
@@ -114,9 +126,20 @@ class ActionEngine:
             
         try:
             target = entity if entity.endswith(".exe") else f"{entity}.exe"
-            subprocess.run(f"taskkill /f /im {target}", shell=True, capture_output=True)
-            return f"Closed {entity}."
+            print(f"[ACTION] Closing: {target}")
+            result = subprocess.run(f"taskkill /f /im {target}", shell=True, capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                print(f"[EXECUTION REAL] App closed: {entity}")
+                return f"Closed {entity}."
+            else:
+                if "not found" in result.stderr.lower():
+                    print(f"[ACTION] {entity} was not running.")
+                    return f"{entity} is not currently running."
+                print(f"[ACTION] Failed to close {entity}: {result.stderr}")
+                return f"I couldn't close {entity}. Maybe it's already closed?"
         except Exception as e:
+            print(f"[ACTION] Error closing {entity}: {e}")
             return f"Could not close {entity}: {e}"
 
     def _shutdown_system(self) -> str:

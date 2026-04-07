@@ -40,6 +40,7 @@ class VoiceOutput:
         
         self.is_speaking = True
         print(f"S1: {text}")
+        print(f"[SPEAK REAL] {text}")
         
         try:
             # We use a loop or chunks if we want even finer control,
@@ -48,6 +49,7 @@ class VoiceOutput:
             self.engine.runAndWait()
         except Exception as e:
             print(f"[TTS ERROR] {e}")
+            print(f"[SPEAK FALLBACK] {text}")
         finally:
             self.is_speaking = False
             # Transition to WAITING for a few seconds to allow follow-up

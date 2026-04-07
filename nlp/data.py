@@ -3,7 +3,7 @@
 Centralized, dynamically loaded data store for all NLP intent definitions
 and language-specific data, aggregated from registered language packs.
 """
-from typing import Dict, List, Any, Set, Tuple
+from typing import Dict, List, Any, Set, Tuple, Optional
 from nlp.languages import get_language_registry, BaseLanguagePack
 
 # --- Import concrete language packs to register them ---

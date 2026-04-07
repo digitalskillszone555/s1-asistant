@@ -25,7 +25,8 @@ class TaskExecutor:
         results = []
 
         for i, step in enumerate(plan):
-            print(f"[TaskExecutor] Executing Step {i+1}: {step.get('raw_text')}")
+            intent_name = step.get('intent', 'unknown')
+            print(f"[TASK] Executing Step {i+1}: Intent='{intent_name}'")
             
             try:
                 # Execute action using the existing ActionEngine
@@ -38,11 +39,11 @@ class TaskExecutor:
                 results.append(response)
 
                 if not success:
-                    print(f"[TaskExecutor] Step {i+1} failed. Stopping task.")
+                    print(f"[TASK] Step {i+1} failed. Stopping task.")
                     break # Stop execution on failure for safety
 
             except Exception as e:
-                print(f"[TaskExecutor ERROR] Unexpected error at step {i+1}: {e}")
+                print(f"[TASK] Unexpected error at step {i+1}: {e}")
                 self.task_manager.update_step(i, False, f"Unexpected error: {e}")
                 results.append(f"An unexpected error occurred at step {i+1}.")
                 break

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S1 AI - Quick Actions Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#581c87",
+              "surface": "#0a0c10",
+              "surface-bright": "#1e293b",
+              "on-primary": "#000000",
+              "primary-container": "#0a111f",
+              "primary-fixed": "#bae6fd",
+              "inverse-surface": "#f1f5f9",
+              "on-secondary-container": "#d8b4fe",
+              "primary": "#38bdf8",
+              "tertiary": "#f59e0b",
+              "on-primary-container": "#38bdf8",
+              "tertiary-container": "#451a03",
+              "on-tertiary": "#ffffff",
+              "on-background": "#f1f5f9",
+              "surface-container-low": "#0f172a",
+              "surface-container-highest": "#334155",
+              "on-error-container": "#fca5a5",
+              "outline": "#475569",
+              "tertiary-fixed": "#fef3c7",
+              "secondary-fixed": "#f3e8ff",
+              "surface-container": "#0f172a",
+              "on-surface-variant": "#94a3b8",
+              "surface-tint": "#38bdf8",
+              "on-secondary": "#ffffff",
+              "secondary": "#a855f7",
+              "on-tertiary-fixed": "#78350f",
+              "on-tertiary-container": "#fbbf24",
+              "primary-fixed-dim": "#7dd3fc",
+              "background": "#0a0c10",
+              "surface-variant": "#0f172a",
+              "error": "#ef4444",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#0a0c10",
+              "on-tertiary-fixed-variant": "#b45309",
+              "on-surface": "#f1f5f9",
+              "outline-variant": "#1e293b",
+              "secondary-container": "#3b0764",
+              "surface-dim": "#0a0c10",
+              "on-primary-fixed-variant": "#0369a1",
+              "on-secondary-fixed-variant": "#7e22ce",
+              "inverse-primary": "#0369a1",
+              "error-container": "#7f1d1d",
+              "on-primary-fixed": "#0c4a6e",
+              "secondary-fixed-dim": "#e9d5ff",
+              "tertiary-fixed-dim": "#fde68a",
+              "surface-container-high": "#1e293b",
+              "surface-container-lowest": "#050608"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ai-orb-glow {
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, transparent 70%);
+        }
+        .text-gradient {
+            background: linear-gradient(to bottom, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen overflow-x-hidden">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 max-w-7xl mx-auto rounded-2xl mt-4 mx-4 border border-white/10 bg-slate-900/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500">S1 AI</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Models</a>
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Datasets</a>
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Workbench</a>
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors">notifications</span>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors">settings</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="User avatar" data-alt="professional male portrait with neutral background and soft studio lighting for user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvQjTSechHXMYh4Rq7ELIvG79KqJYgJsxJdJRWTNj1TkTDt5iWc0GOh0xH5lSeWTqhI4v1WPF9BN5Hy33hFlSM3yUmgQYkXV5VCY-DMv92h4k3pUecZnqYpxMSutx0uU8tGn1ra2ea9RuQ1SndUjUrW2r8RQj21UDBW82aMYVvnWNzIO48-sMUaeXIVjtsELwrWCFyHyLl3vjlo5AvTT5aVESAaGs9jse0yTkENQzHmWF8jS2n3NKYUfA4w9h_cT_b_7hiTV55HR2N"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative pt-32 pb-24 px-6 max-w-7xl mx-auto min-h-screen flex flex-col items-center justify-center">
+<!-- AI Orb Background -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] ai-orb-glow pointer-events-none z-0"></div>
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<!-- Header Section -->
+<div class="relative z-10 text-center mb-16">
+<span class="text-[10px] uppercase tracking-[0.2em] font-medium text-primary mb-4 block">System Command Center</span>
+<h1 class="text-5xl md:text-7xl font-black tracking-tight text-gradient mb-6 leading-none">Quick Actions</h1>
+<p class="text-on-surface-variant max-w-xl mx-auto text-lg">Harness the power of S1 AI across your entire ecosystem with instant-access commands.</p>
+</div>
+<!-- Bento Grid of Actions -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+<!-- Ask Questions (Main High-Density Card) -->
+<div class="md:col-span-2 glass-panel p-8 rounded-2xl group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_25px_rgba(56,189,248,0.15)] cursor-pointer overflow-hidden relative">
+<div class="absolute top-0 right-0 p-8 opacity-10 scale-150 group-hover:scale-[1.6] transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px] text-primary">chat_bubble</span>
+</div>
+<div class="relative z-20 flex flex-col h-full justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Ask Questions</h3>
+<p class="text-on-surface-variant text-sm max-w-xs">Query the neural network for real-time synthesis and research.</p>
+</div>
+<div class="mt-12 flex items-center gap-4">
+<div class="flex-1 h-10 bg-slate-800/50 rounded-xl px-4 flex items-center text-slate-500 text-sm border border-white/5">
+                            How can I optimize my current project?
+                        </div>
+<button class="h-10 px-4 rounded-xl bg-primary/20 border border-primary/40 text-primary text-xs font-bold uppercase tracking-wider hover:bg-primary/30 transition-colors">Invoke</button>
+</div>
+</div>
+</div>
+<!-- Open Apps -->
+<div class="glass-panel p-8 rounded-2xl group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] cursor-pointer flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">apps</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Open Apps</h3>
+<p class="text-on-surface-variant text-sm">Launch linked workbench tools instantly.</p>
+</div>
+<div class="flex -space-x-2 mt-8">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">code</span>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">database</span>
+</div>
+</div>
+</div>
+<!-- Sync Devices -->
+<div class="glass-panel p-8 rounded-2xl group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_25px_rgba(56,189,248,0.15)] cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Sync Devices</h3>
+<p class="text-on-surface-variant text-sm">Refresh data across all nodes.</p>
+<div class="mt-6 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-[10px] uppercase tracking-widest text-emerald-500/80 font-bold">Synchronized</span>
+</div>
+</div>
+<!-- Control System -->
+<div class="glass-panel p-8 rounded-2xl group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)] cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings_input_component</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Control System</h3>
+<p class="text-on-surface-variant text-sm">Deep configuration and tuning.</p>
+<div class="mt-8 space-y-2">
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-2/3 bg-secondary rounded-full shadow-[0_0_8px_rgba(168,85,247,0.5)]"></div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 font-bold">
+<span>CPU LOAD</span>
+<span>64%</span>
+</div>
+</div>
+</div>
+<!-- Set Reminders -->
+<div class="glass-panel p-8 rounded-2xl group hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_0_25px_rgba(56,189,248,0.15)] cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Set Reminders</h3>
+<p class="text-on-surface-variant text-sm">Temporal task scheduling.</p>
+<div class="mt-6 space-y-2">
+<div class="bg-white/5 p-2 rounded-lg text-[11px] text-slate-300 flex items-center gap-2 border border-white/5">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span>
+                        Model retrain in 2h
+                    </div>
+</div>
+</div>
+</div>
+<!-- Floating Orb Action (Contextual FAB Suppression would apply but here it acts as the "AI" trigger) -->
+<div class="mt-20 group relative">
+<div class="absolute -inset-4 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<button class="relative glass-panel px-10 py-5 rounded-full flex items-center gap-4 hover:border-primary/50 transition-all duration-500 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform duration-700">radio_button_checked</span>
+<span class="text-sm font-black tracking-[0.2em] uppercase">Initialize AI Session</span>
+</button>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-6 px-12 flex flex-col md:flex-row justify-between items-center border-t border-white/5 bg-[#0a0c10] mt-auto">
+<span class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 mb-4 md:mb-0">© 2024 S1 AI Intelligence. System Status: Operational</span>
+<div class="flex gap-6">
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Security</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors text-sky-400" href="#">API Documentation</a>
+</div>
+</footer>
+</body></html>

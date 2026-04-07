@@ -24,7 +24,7 @@ from system.config_loader import load_config
 from memory.conversation_memory import get_conversation_memory
 from memory.habit_tracker import get_habit_tracker
 from memory.memory_engine import get_memory_engine
-from interface_layer.interaction_manager import get_interaction_manager
+from core.interaction_manager import get_interaction_manager
 from security.action_guard import get_action_guard
 from ai.ai_router import get_ai_response
 from language.language_manager import get_language_manager
@@ -56,8 +56,19 @@ class MasterBrainV7:
         if not raw_text:
             return self.response_engine.generate({"intent": "greeting"}, emotion="happy")
 
-        print(f"[MasterBrainV7] Input: '{raw_text}'")
+        print(f"[BRAIN] Processing input: '{raw_text}'")
         
+        # --- Temporary AI: Rule-based Replies (Priority) ---
+        clean_prompt = raw_text.lower().strip()
+        if clean_prompt in ["hello", "hi", "hey"]:
+            return "Hello! I am S1, your AI assistant."
+        if clean_prompt == "time":
+            import datetime
+            return f"The current time is {datetime.datetime.now().strftime('%H:%M:%S')}."
+        if clean_prompt == "date":
+            import datetime
+            return f"Today's date is {datetime.datetime.now().strftime('%Y-%m-%d')}."
+
         # 0. Emotion & Memory
         current_emotion = detect_emotion(raw_text)
         self.context.update_context(None, None, emotion=current_emotion)
@@ -66,6 +77,7 @@ class MasterBrainV7:
 
         # 1. Handle Pendings
         if session_id in self.pending_permissions:
+            print(f"[BRAIN] Handling pending permission for: {raw_text}")
             return self._handle_permission(raw_text, session_id)
         if session_id in self.pending_autonomy:
             suggestion_res = self._handle_autonomy_feedback(raw_text, session_id)
@@ -73,11 +85,14 @@ class MasterBrainV7:
         
         # 2. Handle Undo Command
         if any(w in raw_text.lower() for w in ["undo", "revert", "back"]):
+            print(f"[BRAIN] Handling UNDO command")
             return self._handle_undo(session_id)
 
         # 3. Standard Logic
         tasks = get_multi_tasks(raw_text)
+        print(f"[BRAIN] Parsed tasks: {tasks}")
         plan = create_task_plan(tasks)
+        print(f"[BRAIN] Created plan: {plan}")
         
         if plan:
             # Resolve Context
@@ -88,6 +103,7 @@ class MasterBrainV7:
             results = []
             last_success = True
             for step in plan:
+                print(f"[TASK] Executing step: {step.get('intent')}")
                 res = self._process_step(step, session_id)
                 results.append(res)
                 if session_id in self.pending_permissions: break
@@ -99,17 +115,21 @@ class MasterBrainV7:
             # Carry extra logic info
             if "(" in final_raw_res:
                 human_res += f" ({final_raw_res.split('(', 1)[1]}"
-            elif "[BUTTONS]" in final_raw_res:
-                human_res += f" {final_raw_res[final_raw_res.find('[BUTTONS]'):]}"
 
+            print(f"[SPEAK REAL] {human_res}")
             self.memory.add_turn(raw_text, human_res, plan[0])
             return human_res
 
         # 4. AI Fallback
+        print(f"[BRAIN] No plan found, falling back to AI")
         ai_response = get_ai_response(raw_text)
-        if ai_response: return ai_response
+        if ai_response:
+            print(f"[SPEAK REAL] {ai_response}")
+            return ai_response
 
-        return self.response_engine.generate({"intent": "unknown"}, emotion=emotional_trend)
+        human_res = self.response_engine.generate({"intent": "unknown"}, emotion=emotional_trend)
+        print(f"[SPEAK REAL] {human_res}")
+        return human_res
 
     def _process_step(self, intent_data: dict, session_id: str) -> str:
         intent = intent_data.get("intent")
@@ -123,17 +143,17 @@ class MasterBrainV7:
         if decision == "ASK":
             preview = self.decision_engine.get_preview_text(intent_data)
             self.pending_permissions[session_id] = {"intent_data": intent_data, "type": "ASK"}
-            return f"{preview} Do you want me to proceed? [BUTTONS: Yes, No]"
+            return f"{preview} Do you want me to proceed?"
 
         return self._execute_and_heal(intent_data, session_id)
 
     def _execute_and_heal(self, intent_data: dict, session_id: str) -> str:
         try:
-            response = self.action_engine.execute(intent_data)
+            print(f"[TASK] Delegating execution for: {intent_data.get('intent')}")
+            response = run_task_executor([intent_data])
             # Store for Undo if successful
             if "opening" in response.lower() or "created" in response.lower():
                 self.last_executed_intent = intent_data
-                response += " [BUTTONS: Undo]"
         except Exception as e:
             response = f"Error: {e}"
 

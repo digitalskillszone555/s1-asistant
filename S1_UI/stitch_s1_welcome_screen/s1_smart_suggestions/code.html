@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S1 AI | Smart Suggestions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#581c87",
+              "surface": "#0a0c10",
+              "surface-bright": "#1e293b",
+              "on-primary": "#000000",
+              "primary-container": "#0a111f",
+              "primary-fixed": "#bae6fd",
+              "inverse-surface": "#f1f5f9",
+              "on-secondary-container": "#d8b4fe",
+              "primary": "#38bdf8",
+              "tertiary": "#f59e0b",
+              "on-primary-container": "#38bdf8",
+              "tertiary-container": "#451a03",
+              "on-tertiary": "#ffffff",
+              "on-background": "#f1f5f9",
+              "surface-container-low": "#0f172a",
+              "surface-container-highest": "#334155",
+              "on-error-container": "#fca5a5",
+              "outline": "#475569",
+              "tertiary-fixed": "#fef3c7",
+              "secondary-fixed": "#f3e8ff",
+              "surface-container": "#0f172a",
+              "on-surface-variant": "#94a3b8",
+              "surface-tint": "#38bdf8",
+              "on-secondary": "#ffffff",
+              "secondary": "#a855f7",
+              "on-tertiary-fixed": "#78350f",
+              "on-tertiary-container": "#fbbf24",
+              "primary-fixed-dim": "#7dd3fc",
+              "background": "#0a0c10",
+              "surface-variant": "#0f172a",
+              "error": "#ef4444",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#0a0c10",
+              "on-tertiary-fixed-variant": "#b45309",
+              "on-surface": "#f1f5f9",
+              "outline-variant": "#1e293b",
+              "secondary-container": "#3b0764",
+              "surface-dim": "#0a0c10",
+              "on-primary-fixed-variant": "#0369a1",
+              "on-secondary-fixed-variant": "#7e22ce",
+              "inverse-primary": "#0369a1",
+              "error-container": "#7f1d1d",
+              "on-primary-fixed": "#0c4a6e",
+              "secondary-fixed-dim": "#e9d5ff",
+              "tertiary-fixed-dim": "#fde68a",
+              "surface-container-high": "#1e293b",
+              "surface-container-lowest": "#050608"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0a0c10;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+        .glow-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+            transition: all 0.3s ease;
+        }
+        .text-gradient {
+            background: linear-gradient(to bottom, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface min-h-screen flex flex-col">
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 max-w-7xl mx-auto rounded-2xl mt-4 mx-4 border border-white/10 bg-slate-900/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500">S1 AI</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Models</a>
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Datasets</a>
+<a class="text-sky-400 border-b-2 border-sky-400/50 pb-1 font-sans tracking-tight text-sm font-medium" href="#">Workbench</a>
+<a class="text-slate-400 hover:text-white transition-colors font-sans tracking-tight text-sm font-medium" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:bg-white/5 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-white/20">
+<img alt="User avatar" data-alt="Close up portrait of a professional man in a dark studio setting with soft cinematic rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgNgnoHUGL1V4aadRxfAHeywPbVF3bQz5AQ0tVdUTt0a0QdmPzdOC6W3WJi4uNWGiGXi78rs7v6zX2HeqONLhDVRxFR4001h-3b9x7c93o9Ha3vGf97oP9VpFLWaaA-KsIuwdNR9k87ONKXs9VKLgfOQkmzEh-83cV31iG54Cmx6fN6iKsE9toMsjVoKF9rUt0y8Irs5WBv5tM4186kdAh8x_c-4T1OYc5yLeltAyqriHCYWt50c4BalzAwBztXTplNiP9wDt1Z3RB"/>
+</div>
+</div>
+</nav>
+<main class="flex-grow pt-32 pb-20 px-6 max-w-7xl mx-auto w-full">
+<header class="mb-12">
+<p class="text-[10px] uppercase tracking-[0.1em] font-medium text-sky-500 mb-2">Intelligence Feed</p>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter text-gradient leading-tight">Smart Suggestions</h1>
+<p class="text-on-surface-variant max-w-2xl mt-4 text-lg">Your proactive intelligence layer. S1 AI analyzes your workflow to provide high-context triggers for your daily routine.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-8 group relative rounded-xl overflow-hidden glass-panel border border-white/10 glow-hover transition-all duration-500">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="Cinematic wide shot of misty mountains at dawn with cold blue tones and atmospheric fog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFcn68ku2s53mRgUVjoPFM99sj6EE_xqSxcnPDSr5oHgyzMIu1wrM6DB_QYSsPaR-E_DGIOvFzbdVcQRBa7Jnv52acwW11xeK5eMHhGTEAdWq9nfayRCZDyiAQPjwPE0AWwe78G0d7fiozciMk7UuAnNTILLEFbY0j2j0Sfy8zWX1W9E6dj3kFatp8dC2SJLfRKiOFY-nt8Zt420sLsnRs-em-j7WHUmbGiRo_hjRs62cAMX5WH-jaqUqSl9fQq_RB-4_jntcc6F3"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"></div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-[10px] uppercase tracking-wider text-sky-400 font-bold">Priority</span>
+<span class="text-[10px] uppercase tracking-wider text-slate-400">Environment</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight mb-2">Check Weather</h2>
+<p class="text-slate-300 max-w-md mb-6">Heavy precipitation expected at 10:00 AM. Your commute may be affected. View detailed atmospheric data.</p>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-xl border border-sky-400/30 bg-sky-400/5 text-sky-400 text-sm font-semibold hover:bg-sky-400/10 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_drama</span>
+                            View Forecast
+                        </button>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="flex-1 glass-panel border border-white/5 rounded-xl p-6 glow-hover transition-all duration-300 group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
+<span class="material-symbols-outlined">event_upcoming</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">In 15 Mins</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Upcoming Meeting</h3>
+<p class="text-slate-400 text-sm mb-6">Project X Sync: "Architecture Review". 4 participants confirmed. Documentation pre-loaded.</p>
+<button class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 text-sm font-medium transition-all">Prepare Workspace</button>
+</div>
+<div class="flex-1 glass-panel border border-white/5 rounded-xl p-6 glow-hover transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-8xl">coffee</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400">
+<span class="material-symbols-outlined">coffee</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Ritual</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Morning Coffee Routine</h3>
+<p class="text-slate-400 text-sm mb-6">Brew cycle optimal. Smart kettle reached 94°C. Ready for your 8:00 AM session.</p>
+<div class="flex items-center gap-2 text-orange-400 text-xs font-bold uppercase tracking-tighter">
+<span class="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></span>
+                            Ready to Pour
+                        </div>
+</div>
+</div>
+</div>
+<div class="md:col-span-12 glass-panel border border-sky-400/20 rounded-xl p-8 glow-primary relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-sky-500/5 to-transparent"></div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-2 rounded-lg bg-sky-500/20 text-sky-400">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-sky-500">System Optimization</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tight mb-3">Optimize System Performance</h2>
+<p class="text-slate-400 text-lg max-w-2xl">Background neural processing is utilizing 84% of available tensor cores. Hibernating unused workbench nodes could recover 12GB of VRAM.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="text-center">
+<div class="text-4xl font-black text-sky-400 mb-1">12GB</div>
+<div class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Potential Recovery</div>
+</div>
+<button class="px-8 py-4 rounded-xl bg-sky-500 text-on-primary font-bold text-sm shadow-[0_0_30px_rgba(56,189,248,0.4)] hover:scale-105 transition-transform active:scale-95">Execute Optimization</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-6 glass-panel border border-white/5 rounded-xl overflow-hidden group">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Dark aesthetic data visualization showing complex glowing network nodes and connecting lines on a deep black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB967tE0a6g4TqF345_-O6YUXfVQYfiSZBvlIgwcx99NsltBbY5B1x163YEDS6NDTcGuC_NNfraRKACjuUPND6X6s9Rl7BuCas_9RueTSq5DQ3iYRI579zehuTfRq0RAWn3PUtnQwSYPGIy5vrcZRlaJBfw0FX70i5Zl2pYtzrrj8BXzK4O9jnxZ-eeoK8gcKOw8Y0t7hRXoWAQJfBwuuWHukhSTcxeEU_AfOFb7K4yspcyAZdqGCs9t73ZHyzQdStIE2-hGpDd72UC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] uppercase tracking-wider text-emerald-500 font-bold">Network</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Analyze Traffic Spikes</h3>
+<p class="text-slate-400 text-sm mb-6">Anomalous API request patterns detected from the Asia-Pacific node. Requires immediate inspection.</p>
+<a class="text-sky-400 text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all" href="#">
+                        Open Security Workbench
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-6 glass-panel border border-white/5 rounded-xl p-8 flex flex-col justify-center text-center">
+<div class="mb-6 mx-auto w-16 h-16 rounded-2xl bg-slate-800/50 flex items-center justify-center border border-white/5">
+<span class="material-symbols-outlined text-slate-400">add_circle</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Create Custom Suggestion</h3>
+<p class="text-slate-500 text-sm mb-6 max-w-xs mx-auto">Define your own proactive triggers based on time, location, or system events.</p>
+<button class="mx-auto px-6 py-2.5 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all text-sm font-medium">Define Rule</button>
+</div>
+</div>
+</main>
+<footer class="w-full py-6 px-12 flex flex-col md:flex-row justify-between items-center border-t border-white/5 bg-[#0a0c10]">
+<div class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 mb-4 md:mb-0">
+            © 2024 S1 AI Intelligence. System Status: <span class="text-emerald-500">Operational</span>
+</div>
+<div class="flex gap-8">
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Terms of Service</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">Security</a>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600 hover:text-slate-300 transition-colors" href="#">API Documentation</a>
+</div>
+</footer>
+</body></html>

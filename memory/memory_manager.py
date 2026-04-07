@@ -277,11 +277,10 @@ def migrate_v1_to_v2(username: str):
     Migrates data from the encrypted MemoryManager (v1) 
     to the offline-first MemoryEngineV2 (v2).
     """
-    from memory.memory_engine_v2 import get_memory_engine_v2
-    
+    from memory.memory_engine import get_memory_engine
+
     v1 = get_memory_manager()
-    v2 = get_memory_engine_v2()
-    
+    v2 = get_memory_engine()    
     log_event("MIGRATION", f"Starting migration for user: {username}")
     
     # Migrate Facts

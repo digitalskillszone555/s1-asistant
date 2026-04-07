@@ -3,5 +3,6 @@
     "ai_mode": "smart",
     "voice_enabled": true,
     "autonomy_enabled": true,
-    "api_key": ""
+    "api_key": "",
+    "theme": "dark"
 }

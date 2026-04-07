@@ -21,6 +21,7 @@ class WebActions:
         encoded_query = urllib.parse.quote(query)
         url = self.base_search_url + encoded_query
         webbrowser.open(url)
+        print(f"[EXECUTION REAL] Browser opened for search: {query}")
         return f"Searching Google for '{query}'..."
 
     def search_youtube(self, query: str) -> str:
@@ -31,6 +32,7 @@ class WebActions:
         encoded_query = urllib.parse.quote(query)
         url = self.youtube_search_url + encoded_query
         webbrowser.open(url)
+        print(f"[EXECUTION REAL] YouTube search opened: {query}")
         return f"Searching YouTube for '{query}'..."
 
     def open_url(self, url: str) -> str:
@@ -43,6 +45,7 @@ class WebActions:
             url = "https://" + url
             
         webbrowser.open(url)
+        print(f"[EXECUTION REAL] URL opened: {url}")
         return f"Opening {url}..."
 
 # Global Access

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S1 AI - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#581c87",
+                        "surface": "#0a0c10",
+                        "surface-bright": "#1e293b",
+                        "on-primary": "#000000",
+                        "primary-container": "#0a111f",
+                        "primary-fixed": "#bae6fd",
+                        "inverse-surface": "#f1f5f9",
+                        "on-secondary-container": "#d8b4fe",
+                        "primary": "#38bdf8",
+                        "tertiary": "#f59e0b",
+                        "on-primary-container": "#38bdf8",
+                        "tertiary-container": "#451a03",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#f1f5f9",
+                        "surface-container-low": "#0f172a",
+                        "surface-container-highest": "#334155",
+                        "on-error-container": "#fca5a5",
+                        "outline": "#475569",
+                        "tertiary-fixed": "#fef3c7",
+                        "secondary-fixed": "#f3e8ff",
+                        "surface-container": "#0f172a",
+                        "on-surface-variant": "#94a3b8",
+                        "surface-tint": "#38bdf8",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#a855f7",
+                        "on-tertiary-fixed": "#78350f",
+                        "on-tertiary-container": "#fbbf24",
+                        "primary-fixed-dim": "#7dd3fc",
+                        "background": "#0a0c10",
+                        "surface-variant": "#0f172a",
+                        "error": "#ef4444",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#0a0c10",
+                        "on-tertiary-fixed-variant": "#b45309",
+                        "on-surface": "#f1f5f9",
+                        "outline-variant": "#1e293b",
+                        "secondary-container": "#3b0764",
+                        "surface-dim": "#0a0c10",
+                        "on-primary-fixed-variant": "#0369a1",
+                        "on-secondary-fixed-variant": "#7e22ce",
+                        "inverse-primary": "#0369a1",
+                        "error-container": "#7f1d1d",
+                        "on-primary-fixed": "#0c4a6e",
+                        "secondary-fixed-dim": "#e9d5ff",
+                        "tertiary-fixed-dim": "#fde68a",
+                        "surface-container-high": "#1e293b",
+                        "surface-container-lowest": "#050608"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0a0c10;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+        .glow-cyan:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+        }
+        .assistant-orb {
+            background: radial-gradient(circle at 30% 30%, #38bdf8 0%, #0369a1 50%, #0a0c10 100%);
+            filter: blur(80px);
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Decorative Assistant Orb Background -->
+<div class="assistant-orb absolute w-[600px] h-[600px] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/20 to-background pointer-events-none"></div>
+<!-- Login Container -->
+<main class="relative z-10 w-full max-w-md px-6">
+<!-- Brand Header -->
+<div class="text-center mb-10">
+<h1 class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-500 mb-2">
+                S1 AI
+            </h1>
+<p class="text-xs uppercase tracking-[0.2em] font-medium text-slate-500">
+                Artificial Intelligence Intelligence
+            </p>
+</div>
+<!-- Glassmorphic Card -->
+<div class="glass-panel rounded-2xl p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
+<div class="mb-8">
+<h2 class="text-2xl font-bold tracking-tight text-white">Welcome back</h2>
+<p class="text-sm text-on-surface-variant mt-1">Access your neural workbench</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div>
+<label class="block text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500 mb-2 ml-1" for="email">
+                        Email Address
+                    </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">mail</span>
+<input class="w-full bg-slate-800/50 border-none rounded-xl py-3 pl-12 pr-4 text-sm text-on-surface placeholder:text-slate-600 focus:ring-1 focus:ring-primary/50 transition-all" id="email" placeholder="name@company.ai" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<div class="flex justify-between items-center mb-2 ml-1">
+<label class="block text-[10px] uppercase tracking-[0.1em] font-medium text-slate-500" for="password">
+                            Security Key
+                        </label>
+<a class="text-[10px] uppercase tracking-[0.1em] font-medium text-primary hover:text-primary-fixed-dim transition-colors" href="#">
+                            Forgot Password?
+                        </a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">lock</span>
+<input class="w-full bg-slate-800/50 border-none rounded-xl py-3 pl-12 pr-12 text-sm text-on-surface placeholder:text-slate-600 focus:ring-1 focus:ring-primary/50 transition-all" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+<!-- Sign In Button -->
+<button class="w-full py-4 px-6 rounded-xl border border-primary text-primary font-bold text-sm glow-cyan hover:bg-primary/5 transition-all active:scale-95 duration-200" type="submit">
+                    Sign In to Workbench
+                </button>
+</form>
+<div class="mt-8 pt-8 border-t border-white/5 flex flex-col items-center gap-4">
+<p class="text-sm text-on-surface-variant">
+                    New to the ecosystem? 
+                    <a class="text-primary font-medium hover:underline" href="#">Create Account</a>
+</p>
+<div class="flex items-center gap-4 w-full">
+<div class="h-px bg-white/5 flex-1"></div>
+<span class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600">Secure SSO</span>
+<div class="h-px bg-white/5 flex-1"></div>
+</div>
+<div class="flex gap-3 w-full">
+<button class="flex-1 py-3 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors border border-white/5">
+<img alt="" class="w-5 h-5 grayscale opacity-70" data-alt="Google company logo icon minimalist flat design gray scale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUCHObwNAzyIwwnzq96QOX6Rsmcjg2wXummmcLzHYFBraxwP9y_L9_R8sM6fRafAfhJCCqqZtLnhpVMPODBmm9pori7i_xp1OEg9L3t6L7h-aXCaSJtgYmEL6MABXJye8yTS7hu1ThyWbD0-vK0YMAdYA2uar_aY5dQvUgYBBu6qyMt1ChYA8jQLnuGQZjr2Ln9-XWzbc5aPL1Aqb2vBJzCmcMMzLOlDsytT6ihPkWK1H0J3-dRmQS9rhdxkUJAq7gv1MVQSuHp4Fq"/>
+</button>
+<button class="flex-1 py-3 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors border border-white/5">
+<span class="material-symbols-outlined text-xl text-slate-400">terminal</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="mt-8 text-center">
+<p class="text-[10px] uppercase tracking-[0.1em] font-medium text-slate-600">
+                © 2024 S1 AI Intelligence. System Status: Operational
+            </p>
+</div>
+</main>
+<!-- Background Accents -->
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-64 h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+</body></html>
