@@ -9,3 +9,8 @@ memory_data/
 node_modules/
 *.db
 .vscode/
+# Build files
+dist/
+build/
+*.exe
+*.pkg
